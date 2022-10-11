@@ -1,23 +1,23 @@
-import { SafeAreaView, StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native';
-import { NavigationProp } from "@react-navigation/native";
-import LogoWithText from '../components/LogoWithText'
-import FlowButton from '../components/FlowButton';
+import {  StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import Update from './Update';
+import Payments from './Payments';
 
-interface RouterProps {
-    navigation: NavigationProp<any, any>;
-}
+const Stack = createNativeStackNavigator();
 
-export default function Splitka({ navigation }: RouterProps) {
+export default function Splitka() {
     return (
-        <SafeAreaView style={styles.container}>
-        <View style={styles.logo}>
-          <LogoWithText/>
-        </View>
-        <View style={styles.button}>
-          <FlowButton title="Обновить" onPress={()=>{}}/>
-        </View>
-      </SafeAreaView>
+      <Stack.Navigator initialRouteName="Update" 
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: '#FFF'
+        }
+      }}>
+        <Stack.Screen name="Update" component={Update} />
+        <Stack.Screen name="Payments" component={Payments} />
+      </Stack.Navigator>
     );
 }
 
